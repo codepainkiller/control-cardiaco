@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1401761715 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\main.cpp
+1401943962 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\main.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	"Sistema.h"
@@ -338,15 +338,19 @@
 	<string>
 	<vector>
 
-1401761129 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\paciente.cpp
+1401989028 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\paciente.cpp
 	"Paciente.h"
 
-1401761128 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\paciente.h
+1401989252 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\paciente.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<sstream>
 
-1401761641 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\sistema.cpp
+1401988629 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\sistema.cpp
 	"Sistema.h"
 
-1401761427 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\sistema.h
+1401988420 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\sistema.h
 	<iostream>
 	<SFML/Graphics.hpp>
+	"Paciente.h"
 
