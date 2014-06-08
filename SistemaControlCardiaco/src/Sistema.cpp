@@ -2,12 +2,15 @@
 
 Sistema::Sistema(): m_window(sf::VideoMode(1000, 600, 32), "Sistema Control Cardiaco")
 {
-    m_window.setVerticalSyncEnabled(true); // Activa la sincronización vertical (60 fps)
+    // Activa la sincronización vertical (60 fps)
+    m_window.setVerticalSyncEnabled(true);
 
-    m_window.setFramerateLimit(60);
+    // Iniciamos el reloj que controla pulsaciones
+    m_frameTime = m_clock.restart();
 
     // Creamos un objeto paciente
     m_paciente = new Paciente("George Castillo", "pac-001");
+
 }
 
 Sistema::~Sistema()
@@ -41,10 +44,17 @@ void Sistema::DrawPaciente()
     m_window.draw(m_paciente->GetSprite());
     m_window.draw(m_paciente->GetTextNombre());
     m_window.draw(m_paciente->GetTextRitmoCardiaco());
+    m_window.draw(m_paciente->GetTextPresionArterial());
+    m_window.draw(m_paciente->GetTextTemperatura());
+    m_window.draw(m_paciente->GetTextEstado());
+    m_window.draw(m_paciente->GetTextTiempoInfarto());
 }
 
 void Sistema::Update()
 {
+    // Frames x segundo
+    m_frameTime = m_clock.restart();
+
     m_paciente->Update();
 }
 

@@ -13,13 +13,12 @@ class Sistema
 
         void Run();
 
-    protected:
-
     private:
 
-        sf::RenderWindow m_window;
-        Paciente*        m_paciente;
-
+        sf::RenderWindow    m_window;
+        sf::Clock           m_clock;
+        sf::Time            m_frameTime;
+        Paciente*           m_paciente;
 
         void Render();
         void Update();

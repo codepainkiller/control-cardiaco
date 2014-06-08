@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1401943962 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\main.cpp
+1402174833 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\main.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	"Sistema.h"
@@ -338,19 +338,82 @@
 	<string>
 	<vector>
 
-1401989028 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\paciente.cpp
+1402192287 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\paciente.cpp
 	"Paciente.h"
 
-1401989252 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\paciente.h
-	<SFML/Graphics.hpp>
+1402190993 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\paciente.h
 	<iostream>
 	<sstream>
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
 
-1401988629 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\sistema.cpp
+1402192287 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\sistema.cpp
 	"Sistema.h"
 
-1401988420 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\sistema.h
+1402174833 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\sistema.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	"Paciente.h"
+
+1367997278 c:\workspace\c++\librerias\sfml-2.1\include\sfml\audio.hpp
+	<SFML/System.hpp>
+	<SFML/Audio/Listener.hpp>
+	<SFML/Audio/Music.hpp>
+	<SFML/Audio/Sound.hpp>
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundBufferRecorder.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<SFML/Audio/SoundStream.hpp>
+
+1367997278 c:\workspace\c++\librerias\sfml-2.1\include\sfml\audio\listener.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/Vector3.hpp>
+
+1367997278 c:\workspace\c++\librerias\sfml-2.1\include\sfml\audio\export.hpp
+	<SFML/Config.hpp>
+
+1367997278 c:\workspace\c++\librerias\sfml-2.1\include\sfml\audio\music.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundStream.hpp>
+	<SFML/System/Mutex.hpp>
+	<SFML/System/Time.hpp>
+	<string>
+	<vector>
+
+1367997278 c:\workspace\c++\librerias\sfml-2.1\include\sfml\audio\soundstream.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundSource.hpp>
+	<SFML/System/Thread.hpp>
+	<SFML/System/Time.hpp>
+	<cstdlib>
+
+1367997278 c:\workspace\c++\librerias\sfml-2.1\include\sfml\audio\soundsource.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/Vector3.hpp>
+
+1367997278 c:\workspace\c++\librerias\sfml-2.1\include\sfml\audio\sound.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundSource.hpp>
+	<SFML/System/Time.hpp>
+	<cstdlib>
+
+1367997278 c:\workspace\c++\librerias\sfml-2.1\include\sfml\audio\soundbuffer.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/Time.hpp>
+	<string>
+	<vector>
+	<set>
+
+1367997278 c:\workspace\c++\librerias\sfml-2.1\include\sfml\audio\soundbufferrecorder.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<vector>
+
+1367997278 c:\workspace\c++\librerias\sfml-2.1\include\sfml\audio\soundrecorder.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/Thread.hpp>
+	<vector>
 

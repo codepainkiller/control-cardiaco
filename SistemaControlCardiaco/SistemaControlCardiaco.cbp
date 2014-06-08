@@ -20,9 +20,10 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add option="-lsfml-graphics-s" />
-					<Add option="-lsfml-window-s" />
-					<Add option="-lsfml-system-s" />
+					<Add library="sfml-graphics-s" />
+					<Add library="sfml-audio-s" />
+					<Add library="sfml-window-s" />
+					<Add library="sfml-system-s" />
 					<Add directory="../../librerias/SFML-2.1/lib" />
 				</Linker>
 			</Target>
