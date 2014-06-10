@@ -74,11 +74,13 @@ void Paciente::LoadResources()
 {
     /// Texture
 
-    if (!m_texture.loadFromFile("data/textures/paciente/paciente.png"))
+    if (!m_texture.loadFromFile("data/textures/paciente.png"))
         std::cout << "No se cargo textura! " << std::endl;
 
     m_sprite.setTexture(m_texture);
-    m_sprite.setPosition(sf::Vector2f(0.0f, 0.0f));
+    m_sprite.setScale(0.8f, 0.8f);
+    m_sprite.setPosition(sf::Vector2f(0.0f, 600 - m_sprite.getGlobalBounds().height));
+
 
     /// Text
 
@@ -86,31 +88,37 @@ void Paciente::LoadResources()
         std::cout << "No se cargo fuente! "<< std::endl;
 
     m_textNombre.setString("Paciente\t\t\t  : " + m_nombre);
+    m_textNombre.setColor(sf::Color::Black);
     m_textNombre.setFont(m_font);
-    m_textNombre.setCharacterSize(15);
-    m_textNombre.setPosition(100.0f, 0.0f);
+    m_textNombre.setCharacterSize(12);
+    m_textNombre.setPosition(0.0f, 0.0f);
 
+    m_textRitmoCardiaco.setColor(sf::Color::Black);
     m_textRitmoCardiaco.setFont(m_font);
-    m_textRitmoCardiaco.setCharacterSize(15);
-    m_textRitmoCardiaco.setPosition(100.0f, 20.0f);
+    m_textRitmoCardiaco.setCharacterSize(12);
+    m_textRitmoCardiaco.setPosition(0.0f, 20.0f);
 
+    m_textPresionArterial.setColor(sf::Color::Black);
     m_textPresionArterial.setFont(m_font);
-    m_textPresionArterial.setCharacterSize(15);
-    m_textPresionArterial.setPosition(100.0f, 40.0f);
+    m_textPresionArterial.setCharacterSize(12);
+    m_textPresionArterial.setPosition(0.0f, 40.0f);
 
+    m_textTemperatura.setColor(sf::Color::Black);
     m_textTemperatura.setFont(m_font);
-    m_textTemperatura.setCharacterSize(15);
-    m_textTemperatura.setPosition(100.0f, 60.0f);
+    m_textTemperatura.setCharacterSize(12);
+    m_textTemperatura.setPosition(0.0f, 60.0f);
 
     m_textEstado.setString("Estado\t\t\t\t: Estable");
+    m_textEstado.setColor(sf::Color::Black);
     m_textEstado.setFont(m_font);
-    m_textEstado.setCharacterSize(15);
-    m_textEstado.setPosition(100.0f, 80.0f);
+    m_textEstado.setCharacterSize(12);
+    m_textEstado.setPosition(0.0f, 80.0f);
 
     m_textTiempoInfarto.setString("Tiempo Infarto  : 0 s");
+    m_textTiempoInfarto.setColor(sf::Color::Black);
     m_textTiempoInfarto.setFont(m_font);
-    m_textTiempoInfarto.setCharacterSize(15);
-    m_textTiempoInfarto.setPosition(100.0f, 100.0f);
+    m_textTiempoInfarto.setCharacterSize(12);
+    m_textTiempoInfarto.setPosition(0.0f, 100.0f);
 
     /// Sounds
 

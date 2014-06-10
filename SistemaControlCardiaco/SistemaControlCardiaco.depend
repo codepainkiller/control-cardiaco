@@ -338,10 +338,10 @@
 	<string>
 	<vector>
 
-1402192287 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\paciente.cpp
+1402375067 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\paciente.cpp
 	"Paciente.h"
 
-1402190993 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\paciente.h
+1402357071 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\paciente.h
 	<iostream>
 	<sstream>
 	<SFML/System.hpp>
@@ -349,13 +349,15 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1402192287 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\sistema.cpp
+1402374696 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\sistema.cpp
 	"Sistema.h"
 
-1402174833 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\sistema.h
+1402374178 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\sistema.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	"Paciente.h"
+	"Escenario.h"
+	"Bomberos.h"
 
 1367997278 c:\workspace\c++\librerias\sfml-2.1\include\sfml\audio.hpp
 	<SFML/System.hpp>
@@ -416,4 +418,38 @@
 	<SFML/Audio/Export.hpp>
 	<SFML/System/Thread.hpp>
 	<vector>
+
+1402374696 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\bomberos.cpp
+	"Bomberos.h"
+
+1402374696 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\bomberos.h
+	<iostream>
+	<sstream>
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"CarroParamedicos.h"
+
+1402374279 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\escenario.h
+	<iostream>
+	<sstream>
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1402360669 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\carroparamedicos.h
+	<iostream>
+	<sstream>
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1402367658 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\carroparamedicos.cpp
+	"CarroParamedicos.h"
+
+1402374296 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\escenario.cpp
+	"Escenario.h"
 

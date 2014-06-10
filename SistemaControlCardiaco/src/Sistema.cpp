@@ -1,16 +1,16 @@
 #include "Sistema.h"
 
-Sistema::Sistema(): m_window(sf::VideoMode(1000, 600, 32), "Sistema Control Cardiaco")
+Sistema::Sistema(): m_window(sf::VideoMode(window_width, window_heigth, 32), "Sistema Control Cardiaco")
 {
     // Activa la sincronización vertical (60 fps)
     m_window.setVerticalSyncEnabled(true);
 
-    // Iniciamos el reloj que controla pulsaciones
+    // Iniciamos el reloj de sistema
     m_frameTime = m_clock.restart();
 
-    // Creamos un objeto paciente
-    m_paciente = new Paciente("George Castillo", "pac-001");
-
+    // Creamos obejetos
+    m_paciente  = new Paciente("George Castillo", "pac-001");
+    m_escenario = new Escenario();
 }
 
 Sistema::~Sistema()
@@ -30,13 +30,23 @@ void Sistema::Run()
 
 void Sistema::Render()
 {
-    m_window.clear(sf::Color::Black);
+    m_window.clear(sf::Color::White);
 
+    this->DrawEscenario();
     this->DrawPaciente();
-
+    this->DrawHospital();
+    this->DrawBomberos();
 
     m_window.display();
 
+}
+
+void Sistema::Update()
+{
+    // Frames x segundo
+    m_frameTime = m_clock.restart();
+
+    m_paciente->Update();
 }
 
 void Sistema::DrawPaciente()
@@ -50,13 +60,24 @@ void Sistema::DrawPaciente()
     m_window.draw(m_paciente->GetTextTiempoInfarto());
 }
 
-void Sistema::Update()
+void Sistema::DrawHospital()
 {
-    // Frames x segundo
-    m_frameTime = m_clock.restart();
 
-    m_paciente->Update();
 }
+
+void Sistema::DrawBomberos()
+{
+
+}
+
+void Sistema::DrawEscenario()
+{
+    m_window.draw(m_escenario->GetSpriteAntena());
+    m_window.draw(m_escenario->GetSpriteOndas1());
+    m_window.draw(m_escenario->GetSpriteOndas2());
+}
+
+
 
 void Sistema::ProcessEvents()
 {
