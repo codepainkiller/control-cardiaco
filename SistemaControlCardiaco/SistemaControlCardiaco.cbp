@@ -33,11 +33,15 @@
 		</Compiler>
 		<Unit filename="include/Bomberos.h" />
 		<Unit filename="include/CarroParamedicos.h" />
+		<Unit filename="include/Escenario.h" />
+		<Unit filename="include/Hospital.h" />
 		<Unit filename="include/Paciente.h" />
 		<Unit filename="include/Sistema.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Bomberos.cpp" />
 		<Unit filename="src/CarroParamedicos.cpp" />
+		<Unit filename="src/Escenario.cpp" />
+		<Unit filename="src/Hospital.cpp" />
 		<Unit filename="src/Paciente.cpp" />
 		<Unit filename="src/Sistema.cpp" />
 		<Extensions>

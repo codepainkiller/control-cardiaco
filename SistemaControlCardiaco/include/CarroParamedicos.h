@@ -18,6 +18,7 @@ class CarroParamedicos
         sf::Sprite      GetSprite();
         sf::Vector2f    GetPosicion();
         float           GetVelocidad();
+        float           SetVelocidad(float velocidad);
         float           GetTiempoLLegada();
         void            SetDistanciaDestino(float distancia);
         float           GetDistanciaDestino();

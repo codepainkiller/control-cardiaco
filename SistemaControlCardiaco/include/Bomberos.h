@@ -16,7 +16,10 @@ class Bomberos
         Bomberos();
         ~Bomberos();
 
-        sf::Sprite GetSprite();
+        void                Update();
+        sf::Sprite          GetSpriteBomberos();
+        sf::Sprite          GetSpriteTelefono();
+        CarroParamedicos*   GetParamedicos();
 
     private:
 
@@ -26,6 +29,9 @@ class Bomberos
         sf::Sprite          m_spriteBomberos;
         sf::Texture         m_textureTelefono;
         sf::Sprite          m_spriteTelefono;
+
+        sf::Vector2f        m_posicionBomberos;
+        sf::Vector2f        m_posicionTelefono;
 
         sf::SoundBuffer     m_bufferTelefono;
         sf::Sound           m_soundTelefono;

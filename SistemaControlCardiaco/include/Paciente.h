@@ -8,10 +8,11 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-#define FRECC_MAX 85    // Frecuencia cardiaca maxima  - Latidos  x minuto
+#define FRECC_MAX 90    // Frecuencia cardiaca maxima  - Latidos  x minuto
+#define FRECC_MIN 60    // Frecuencia cardiaca minima  - Latidos  x minuto
 #define PRESA_MAX 37    // Presion arterial maxima     - Grados Celsius
 #define TEMPC_MAX 120   // Temperatura corporal maxima - mm Hg
-#define TIEMPO_INF 120.0  // Tiempo para un infarto en segundos
+#define TIEMPO_INF 20.0  // Tiempo para un infarto en segundos
 
 namespace convert_type
 {
@@ -37,14 +38,25 @@ class Paciente
         /// Metodos de de estado y ubicacion paciente
         void Update();
 
+        float       GetRitmoCardiaco();
+        float       GetPresionArterial();
+        float       GetTemperatura();
+        float       GetTiempoInfarto();
+        float       GetLatitud();
+        float       GetLongitud();
+        std::string GetCodigoPulsera();
+        std::string GetUbicacion();
+        bool        IsEnPeligro();
+        bool        IsEstaVivo();
+
         /// Metodos para animacion de paciente (sprite)
-        sf::Sprite GetSprite();
-        sf::Text GetTextNombre();
-        sf::Text GetTextRitmoCardiaco();
-        sf::Text GetTextPresionArterial();
-        sf::Text GetTextTemperatura();
-        sf::Text GetTextEstado();
-        sf::Text GetTextTiempoInfarto();
+        sf::Sprite  GetSprite();
+        sf::Text    GetTextNombre();
+        sf::Text    GetTextRitmoCardiaco();
+        sf::Text    GetTextPresionArterial();
+        sf::Text    GetTextTemperatura();
+        sf::Text    GetTextEstado();
+        sf::Text    GetTextTiempoInfarto();
 
         /// Manipulacion de ritmo cardiaco
         void SetRitmoCardiaco(float delta);
@@ -52,29 +64,21 @@ class Paciente
     private:
 
         /// Bip del corazon
-        sf::SoundBuffer buffer;
-        sf::Sound       sound;
-
+        sf::SoundBuffer m_bufferLatido;
         sf::SoundBuffer m_bufferAlerta;
+        sf::SoundBuffer m_bufferCorazonDetenido;
+        sf::Sound       m_soundLatido;
         sf::Sound       m_soundAlerta;
+        sf::Sound       m_soundCorazonDetenido;
 
         sf::Clock   m_clock;
-        sf::Time    m_frecuencia;
-
         sf::Clock   m_clockInfarto;
+        sf::Time    m_frecuencia;    // Ritmo cardiaco
         sf::Time    m_cuentaRegresiva;   // Tiempo que le quedara para el infarto
 
         /// Atributos de animacion
         sf::Texture m_texture;
         sf::Sprite  m_sprite;
-
-        /// Atributos de paciente
-        std::string m_nombre;
-        float       m_ritmoCardiaco;
-        float       m_presionArterial;
-        float       m_temperatura;
-        float       m_tiempoInfarto;  // tiempo para que le de un infarto
-        bool        m_estado;         // con vida
 
         /// Fonts - Text para mostrar por pantalla
         sf::Font    m_font;             // fuente para todos los textos que se mostraran
@@ -85,23 +89,21 @@ class Paciente
         sf::Text    m_textEstado;
         sf::Text    m_textTiempoInfarto;
 
-        /// Atributos del pulsersa
+        /// Atributos de paciente
+        std::string m_nombre;
+        float       m_ritmoCardiaco;
+        float       m_presionArterial;
+        float       m_temperatura;
+        float       m_tiempoInfarto;  // tiempo para que le de un infarto
+        bool        m_estaVivo;
+        bool        m_enPeligro;
         std::string m_codigoPulsera;
         std::string m_ubicacionActual;
         double      m_latitud;
         double      m_longitud;
 
-        /// Metodos privados
         void  LoadResources();
-        float GetRitmoCardiaco();
-        float GetPresionArterial();
-        float GetTemperatura();
-        float GetTiempoInfarto();
-        float GetLatitud();
-        float GetLongitud();
-        bool  IsEstado();
-        std::string GetCodigoPulsera();
-        std::string GetUbicacion();
+
 };
 
 #endif // PACIENTE_H

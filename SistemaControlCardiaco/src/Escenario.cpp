@@ -30,12 +30,13 @@ void Escenario::LoadResources()
     m_spriteOndas1.setPosition(m_posicionOndas1);
     m_spriteOndas2.setPosition(m_posicionOndas2);
 
-    m_spriteAntena.scale(0.2f, 0.2f);
+    m_spriteAntena.scale(0.6f, 0.6f);
     m_spriteOndas1.scale(1.5f, 1.0f);
     m_spriteOndas2.scale(0.8f, 1.0f);
 
     m_spriteOndas1.rotate(-40.0f);
     m_spriteOndas2.rotate(15.0f);
+
 
 }
 

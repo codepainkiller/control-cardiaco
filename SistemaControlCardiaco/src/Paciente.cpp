@@ -2,14 +2,16 @@
 
 Paciente::Paciente(std::string nombre, std::string codigoPulsera)
 {
-    m_nombre = nombre;
-    m_codigoPulsera = codigoPulsera;
+    this->m_nombre = nombre;
+    this->m_codigoPulsera = codigoPulsera;
 
-    m_estado            = true;
+    m_estaVivo          = true;
+    m_enPeligro         = false;
     m_tiempoInfarto     = 0.0f;
     m_ritmoCardiaco     = 66.3f;
     m_presionArterial   = 95.0f;
     m_temperatura       = 35.0f;
+    m_cuentaRegresiva   = sf::Time::Zero;
 
     m_frecuencia = m_clock.getElapsedTime();
 
@@ -23,56 +25,81 @@ Paciente::~Paciente()
 
 void Paciente::Update()
 {
-    m_frecuencia    = m_clock.getElapsedTime();
+    m_frecuencia        = m_clock.getElapsedTime();
 
-    /// Frecuencia de pulsaciones cardiacas
+    /// Sonidos y frecuencia cardiaca
+
     if (m_frecuencia.asSeconds() > (60.0f / this->GetRitmoCardiaco()))
     {
-        sound.play();
-        m_frecuencia = m_clock.restart();
+            m_soundCorazonDetenido.stop();
+            m_soundLatido.play();
+            m_frecuencia = m_clock.restart();
+
+            // El sonido de alerta sonara al mismo tiempo que el corazon
+            if (m_enPeligro)
+                m_soundAlerta.play();
+            else if (this->GetRitmoCardiaco() > 0 && this->GetRitmoCardiaco() < 60)
+                m_soundAlerta.play();
     }
 
-    /// Si la frecuencia cardiaca ha pasado el umbral definido
-    if (this->GetRitmoCardiaco() > FRECC_MAX)
+
+    /// Control de estados de corazon de paciente
+
+    if (m_estaVivo)
     {
-        m_estado = false;  // En peligro
-        m_textEstado.setString("Estado\t\t\t\t: En peligro");
-    }
-    else {
-        m_estado = true;    // Vuelve ha estar estable
-        m_clockInfarto.restart();
-        m_tiempoInfarto = 0.0f;
-        m_cuentaRegresiva = sf::Time::Zero;
+        if (this->GetRitmoCardiaco() > FRECC_MAX)
+        {
+            m_enPeligro = true;
 
-        m_textEstado.setString("Estado\t\t\t\t: Estable");
+            if (m_tiempoInfarto < 0)
+            {
+                m_estaVivo      = false;
+                m_ritmoCardiaco = 0.0f;
+                m_tiempoInfarto = 0;
+                m_soundCorazonDetenido.play();
+            }
+            else
+            {
+                m_cuentaRegresiva += m_clockInfarto.restart();
+                m_tiempoInfarto = TIEMPO_INF - m_cuentaRegresiva.asSeconds();
+                m_textEstado.setString("Estado\t\t\t\t: En peligro");
+            }
+        }
+        else
+        {
+            m_enPeligro       = false;
+            m_cuentaRegresiva = sf::Time::Zero;
+            m_tiempoInfarto   = 0.0f;
+            m_clockInfarto.restart();
+            m_textEstado.setString("Estado\t\t\t\t: Estable");
+        }
     }
-
-    if (m_estado == false)  // Esta en peligro!
+    else
     {
-        // Calculamos el tiempo hasta el infarto
-        m_cuentaRegresiva = m_clockInfarto.getElapsedTime();
-        m_tiempoInfarto = TIEMPO_INF - m_cuentaRegresiva.asSeconds();
+        if (m_ritmoCardiaco > 60)
+        {
+            m_estaVivo   = true;
+            m_enPeligro  = false;
+        }
+
+        m_textEstado.setString("Estado\t\t\t\t: Paro cardiaco");
     }
 
     /// Mostramos datos de paciente
 
     m_textTiempoInfarto.setString("Tiempo Infarto  : " +
-                                      convert_type::to_string(this->GetTiempoInfarto()) + " s");
-
+                                  convert_type::to_string(this->GetTiempoInfarto()) + " s");
     m_textRitmoCardiaco.setString("Ritmo Cardiaco  : " +
                                   convert_type::to_string(this->GetRitmoCardiaco()) + "  lat por m.");
-
     m_textPresionArterial.setString("Presion Arterial : " +
-                                  convert_type::to_string(this->GetPresionArterial()) + "  mm Hg");
-
+                                    convert_type::to_string(this->GetPresionArterial()) + "  mm Hg");
     m_textTemperatura.setString("Temperatura      : " +
-                                  convert_type::to_string(this->GetTemperatura()) + "  ° C");
-
+                                convert_type::to_string(this->GetTemperatura()) + "  ° C");
 }
 
 void Paciente::LoadResources()
 {
-    /// Texture
+    /// Texture y sprites
 
     if (!m_texture.loadFromFile("data/textures/paciente.png"))
         std::cout << "No se cargo textura! " << std::endl;
@@ -82,7 +109,7 @@ void Paciente::LoadResources()
     m_sprite.setPosition(sf::Vector2f(0.0f, 600 - m_sprite.getGlobalBounds().height));
 
 
-    /// Text
+    /// Text por pantalla
 
     if (!m_font.loadFromFile("data/fonts/OpenSans-Regular.ttf"))
         std::cout << "No se cargo fuente! "<< std::endl;
@@ -90,42 +117,55 @@ void Paciente::LoadResources()
     m_textNombre.setString("Paciente\t\t\t  : " + m_nombre);
     m_textNombre.setColor(sf::Color::Black);
     m_textNombre.setFont(m_font);
-    m_textNombre.setCharacterSize(12);
+    m_textNombre.setCharacterSize(15);
     m_textNombre.setPosition(0.0f, 0.0f);
 
     m_textRitmoCardiaco.setColor(sf::Color::Black);
     m_textRitmoCardiaco.setFont(m_font);
-    m_textRitmoCardiaco.setCharacterSize(12);
+    m_textRitmoCardiaco.setCharacterSize(15);
     m_textRitmoCardiaco.setPosition(0.0f, 20.0f);
 
     m_textPresionArterial.setColor(sf::Color::Black);
     m_textPresionArterial.setFont(m_font);
-    m_textPresionArterial.setCharacterSize(12);
+    m_textPresionArterial.setCharacterSize(15);
     m_textPresionArterial.setPosition(0.0f, 40.0f);
 
     m_textTemperatura.setColor(sf::Color::Black);
     m_textTemperatura.setFont(m_font);
-    m_textTemperatura.setCharacterSize(12);
+    m_textTemperatura.setCharacterSize(15);
     m_textTemperatura.setPosition(0.0f, 60.0f);
 
     m_textEstado.setString("Estado\t\t\t\t: Estable");
     m_textEstado.setColor(sf::Color::Black);
     m_textEstado.setFont(m_font);
-    m_textEstado.setCharacterSize(12);
+    m_textEstado.setCharacterSize(15);
     m_textEstado.setPosition(0.0f, 80.0f);
 
     m_textTiempoInfarto.setString("Tiempo Infarto  : 0 s");
     m_textTiempoInfarto.setColor(sf::Color::Black);
     m_textTiempoInfarto.setFont(m_font);
-    m_textTiempoInfarto.setCharacterSize(12);
+    m_textTiempoInfarto.setCharacterSize(15);
     m_textTiempoInfarto.setPosition(0.0f, 100.0f);
 
     /// Sounds
 
-    if (!buffer.loadFromFile("data/sounds/latido.wav"))
+    if (!m_bufferLatido.loadFromFile("data/sounds/latido.wav"))
         std::cout << "No se cargo sonido" << std::endl;
 
-    sound.setBuffer(buffer);
+    if (!m_bufferAlerta.loadFromFile("data/sounds/alerta_pulsera.wav"))
+        std::cout << "No se cargo sonido" << std::endl;
+
+    if (!m_bufferCorazonDetenido.loadFromFile("data/sounds/corazon_detenido.wav"))
+        std::cout << "No se cargo sonido" << std::endl;
+
+    m_soundLatido.setBuffer(m_bufferLatido);
+    m_soundAlerta.setBuffer(m_bufferAlerta);
+    m_soundCorazonDetenido.setBuffer(m_bufferCorazonDetenido);
+
+    m_soundCorazonDetenido.setLoop(true);
+
+    m_soundCorazonDetenido.setVolume(8.0f);
+    m_soundAlerta.setVolume(10.0f);
 
 }
 
@@ -148,6 +188,7 @@ sf::Text Paciente::GetTextPresionArterial()
 {
     return this->m_textPresionArterial;
 }
+
 sf::Text Paciente::GetTextTemperatura()
 {
     return this->m_textTemperatura;
@@ -163,7 +204,6 @@ sf::Text Paciente::GetTextTiempoInfarto()
 {
     return this->m_textTiempoInfarto;
 }
-
 
 sf::Sprite Paciente::GetSprite()
 {
@@ -185,9 +225,9 @@ float Paciente::GetTemperatura()
     return this->m_temperatura;
 }
 
-bool Paciente::IsEstado()
+bool Paciente::IsEstaVivo()
 {
-    return this->m_estado;
+    return this->m_estaVivo;
 }
 
 float Paciente::GetTiempoInfarto()
@@ -213,5 +253,10 @@ float Paciente::GetLatitud()
 float Paciente::GetLongitud()
 {
     return this->m_longitud;
+}
+
+bool Paciente::IsEnPeligro()
+{
+    return this->m_enPeligro;
 }
 

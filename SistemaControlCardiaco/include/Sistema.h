@@ -7,6 +7,7 @@
 #include "Paciente.h"
 #include "Escenario.h"
 #include "Bomberos.h"
+#include "Hospital.h"
 
 
 const int window_width = 1100;
@@ -25,8 +26,12 @@ class Sistema
         sf::RenderWindow    m_window;
         sf::Clock           m_clock;
         sf::Time            m_frameTime;
+
+        // Objetos que intercatuan en el sistema
         Paciente*           m_paciente;
         Escenario*          m_escenario;
+        Hospital*           m_hospital;
+        Bomberos*           m_bomberos;
 
         void Render();
         void Update();
