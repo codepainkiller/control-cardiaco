@@ -17,11 +17,14 @@ class CarroParamedicos
         void            Update();
         sf::Sprite      GetSprite();
         sf::Vector2f    GetPosicion();
+        void            SetPosicion(sf::Vector2f posicion);
         float           GetVelocidad();
-        float           SetVelocidad(float velocidad);
+        void            SetVelocidad(float velocidad);
         float           GetTiempoLLegada();
         void            SetDistanciaDestino(float distancia);
         float           GetDistanciaDestino();
+        bool            IsEnCamino();
+        void            SetEnCamino(bool estado);
 
     private:
 
@@ -33,6 +36,7 @@ class CarroParamedicos
         float           m_velocidad;
         float           m_tiempoLlegada;
         float           m_distanciaDestino;
+        bool            m_enCamino;         // los paramedicos estan en camino
 
         /// Metodos privados
         void            LoadResources();

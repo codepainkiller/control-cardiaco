@@ -5,12 +5,11 @@ Bomberos::Bomberos()
     // Se crea el objeto paramedicos
     m_paramedicos = new CarroParamedicos();
 
-
-
     //Coordenadas de objetos en la ventana
     m_posicionBomberos = sf::Vector2f(830.0f, 400.0f);
     m_posicionTelefono = sf::Vector2f(1000.0f, 500.0f);
 
+    m_existeEmergencia = false;
 
     // Se cargan todos los recursos para este objeto
     this->LoadResources();
@@ -23,6 +22,22 @@ Bomberos::~Bomberos()
 
 void Bomberos::Update()
 {
+    m_paramedicos->Update();
+
+    if (this->m_existeEmergencia)
+    {
+        /// Enviar paramedicos: Controlar la velocidad y distancia
+
+        sf::Vector2f posicion = m_paramedicos->GetPosicion();
+        posicion.x -= 0.1f;
+
+        std::cout << "Pos paramedicos: " << posicion.x << std::endl;
+
+        if (posicion.x > 80.0f)
+            m_paramedicos->SetPosicion(posicion);
+
+    }
+
 
 }
 
@@ -46,6 +61,18 @@ void Bomberos::LoadResources()
     m_spriteTelefono.setPosition(m_posicionTelefono);
 }
 
+void Bomberos::RecibeLlamadaEmergencia(Paciente* paciente)
+{
+    // Se recibe datos del paciente para su ubicacion
+    this->m_pacienteEnEmergencia = paciente;
+
+    m_existeEmergencia = true;
+
+    // Enviamos paramedicos
+    m_paramedicos->SetEnCamino(true);
+}
+
+
 sf::Sprite Bomberos::GetSpriteBomberos()
 {
     return this->m_spriteBomberos;
@@ -60,4 +87,5 @@ CarroParamedicos* Bomberos::GetParamedicos()
 {
     return this->m_paramedicos;
 }
+
 

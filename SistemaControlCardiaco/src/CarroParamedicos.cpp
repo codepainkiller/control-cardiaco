@@ -3,7 +3,8 @@
 CarroParamedicos::CarroParamedicos()
 {
     // Construimos el objeto
-    m_posicion  = sf::Vector2f(700.0f, 510.0f);
+    this->m_posicion  = sf::Vector2f(700.0f, 510.0f);
+    this->m_enCamino  = false;
 
     this->LoadResources();
 }
@@ -15,13 +16,20 @@ CarroParamedicos::~CarroParamedicos()
 
 void CarroParamedicos::Update()
 {
+    m_sprite.setPosition(m_posicion);
+
+    if (this->IsEnCamino() && sf::Sound::Stopped == m_sound.getStatus())
+        m_sound.play();
+    else if (!this->IsEnCamino())
+        m_sound.stop();
+
 
 }
 
 void CarroParamedicos::LoadResources()
 {
     // Texturas y sprites
-    if (!m_texture.loadFromFile("data/textures/ambulancia2.png"))
+    if (!m_texture.loadFromFile("data/textures/ambulancia.png"))
         std::cout << "No se cargo textura ambulancia!" << std::endl;
 
     m_sprite.setTexture(m_texture);
@@ -32,8 +40,28 @@ void CarroParamedicos::LoadResources()
        std::cout << "No se cargo buffeSound ambulancia!" << std::endl;
 
     m_sound.setBuffer(m_buffer);
+    m_sound.setVolume(40.0f);
+    m_sound.setLoop(true);
+}
+bool CarroParamedicos::IsEnCamino()
+{
+    return this->m_enCamino;
 }
 
+void CarroParamedicos::SetEnCamino(bool estado)
+{
+    this->m_enCamino = estado;
+}
+
+void CarroParamedicos::SetPosicion(sf::Vector2f posicion)
+{
+    this->m_posicion = posicion;
+}
+
+void CarroParamedicos::SetVelocidad(float velocidad)
+{
+    this->m_velocidad = velocidad;
+}
 
 sf::Sprite CarroParamedicos::GetSprite()
 {
@@ -50,10 +78,7 @@ float CarroParamedicos::GetVelocidad()
     return this->m_velocidad;
 }
 
-float CarroParamedicos::SetVelocidad(float velocidad)
-{
-    this->m_velocidad = velocidad;
-}
+
 
 float CarroParamedicos::GetTiempoLLegada()
 {

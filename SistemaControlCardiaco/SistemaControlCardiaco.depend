@@ -341,7 +341,7 @@
 1402465513 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\paciente.cpp
 	"Paciente.h"
 
-1402464245 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\paciente.h
+1402500422 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\paciente.h
 	<iostream>
 	<sstream>
 	<SFML/System.hpp>
@@ -349,7 +349,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1402466223 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\sistema.cpp
+1402499501 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\sistema.cpp
 	"Sistema.h"
 
 1402440456 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\sistema.h
@@ -420,10 +420,10 @@
 	<SFML/System/Thread.hpp>
 	<vector>
 
-1402446128 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\bomberos.cpp
+1402500233 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\bomberos.cpp
 	"Bomberos.h"
 
-1402445197 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\bomberos.h
+1402496473 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\bomberos.h
 	<iostream>
 	<sstream>
 	<SFML/System.hpp>
@@ -431,6 +431,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"CarroParamedicos.h"
+	"Paciente.h"
 
 1402374279 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\escenario.h
 	<iostream>
@@ -440,7 +441,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1402453364 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\carroparamedicos.h
+1402498026 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\carroparamedicos.h
 	<iostream>
 	<sstream>
 	<SFML/System.hpp>
@@ -448,20 +449,22 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1402457604 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\carroparamedicos.cpp
+1402498966 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\carroparamedicos.cpp
 	"CarroParamedicos.h"
 
 1402440030 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\escenario.cpp
 	"Escenario.h"
 
-1402441449 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\hospital.cpp
+1402496473 source:c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\src\hospital.cpp
 	"Hospital.h"
 
-1402440826 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\hospital.h
+1402472971 c:\workspace\c++\control-cardiaco\sistemacontrolcardiaco\include\hospital.h
 	<iostream>
 	<sstream>
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
+	"Paciente.h"
+	"Bomberos.h"
 

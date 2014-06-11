@@ -9,10 +9,10 @@ Sistema::Sistema(): m_window(sf::VideoMode(window_width, window_heigth, 32), "Si
     m_frameTime = m_clock.restart();
 
     // Creamos obejetos
-    m_paciente  = new Paciente("Martin Cruz", "pac-014");
+    m_paciente  = new Paciente("Steven Castillo", "pac-014");
     m_escenario = new Escenario();
-    m_bomberos  = new Bomberos();
     m_hospital  = new Hospital();
+    m_bomberos  = m_hospital->GetBomberos();
 }
 
 Sistema::~Sistema()
@@ -48,11 +48,18 @@ void Sistema::Update()
     m_frameTime = m_clock.restart();
 
     m_paciente->Update();
-    m_bomberos->Update();
+    m_hospital->Update();
+    //m_bomberos->Update();
 
     if (m_paciente->IsEnPeligro())
     {
         //std::cout << "Enviando mensaje de emergencia a hospital" << std::endl;
+        m_hospital->SetEmergencia(m_paciente);
+    }
+    else
+    {
+        /// Paciente estable
+        //  paramedicos deben volver
 
     }
 }

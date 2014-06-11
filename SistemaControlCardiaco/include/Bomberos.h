@@ -9,6 +9,7 @@
 #include <SFML/Audio.hpp>
 
 #include "CarroParamedicos.h"
+#include "Paciente.h"
 
 class Bomberos
 {
@@ -20,10 +21,12 @@ class Bomberos
         sf::Sprite          GetSpriteBomberos();
         sf::Sprite          GetSpriteTelefono();
         CarroParamedicos*   GetParamedicos();
+        void                RecibeLlamadaEmergencia(Paciente* paciente);
 
     private:
 
         CarroParamedicos*   m_paramedicos;
+        Paciente*           m_pacienteEnEmergencia;
 
         sf::Texture         m_textureBomberos;
         sf::Sprite          m_spriteBomberos;
@@ -36,7 +39,7 @@ class Bomberos
         sf::SoundBuffer     m_bufferTelefono;
         sf::Sound           m_soundTelefono;
 
-
+        bool                m_existeEmergencia;
 
         void LoadResources();
 };

@@ -12,7 +12,7 @@
 #define FRECC_MIN 60    // Frecuencia cardiaca minima  - Latidos  x minuto
 #define PRESA_MAX 37    // Presion arterial maxima     - Grados Celsius
 #define TEMPC_MAX 120   // Temperatura corporal maxima - mm Hg
-#define TIEMPO_INF 20.0  // Tiempo para un infarto en segundos
+#define TIEMPO_INF 300.0  // Tiempo para un infarto en segundos
 
 namespace convert_type
 {
