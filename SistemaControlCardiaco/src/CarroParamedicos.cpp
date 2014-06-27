@@ -20,16 +20,16 @@ void CarroParamedicos::Update()
 
     if (this->IsEnCamino() && sf::Sound::Stopped == m_sound.getStatus())
         m_sound.play();
-    else if (!this->IsEnCamino())
-        m_sound.stop();
 
+    if (!this->IsEnCamino())
+        m_sound.stop();
 
 }
 
 void CarroParamedicos::LoadResources()
 {
     // Texturas y sprites
-    if (!m_texture.loadFromFile("data/textures/ambulancia.png"))
+    if (!m_texture.loadFromFile("data/textures/ambulancia2.png"))
         std::cout << "No se cargo textura ambulancia!" << std::endl;
 
     m_sprite.setTexture(m_texture);
@@ -95,4 +95,11 @@ float CarroParamedicos::GetDistanciaDestino()
     return this->m_distanciaDestino;
 }
 
+void CarroParamedicos::SetSound(bool estado)
+{
+    if (estado)
+        m_sound.play();
+    else
+        m_sound.stop();
+}
 

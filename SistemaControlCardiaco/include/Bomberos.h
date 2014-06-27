@@ -1,6 +1,9 @@
 #ifndef BOMBEROS_H
 #define BOMBEROS_H
 
+#include "CarroParamedicos.h"
+#include "Paciente.h"
+
 #include <iostream>
 #include <sstream>
 #include <SFML/System.hpp>
@@ -8,8 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-#include "CarroParamedicos.h"
-#include "Paciente.h"
+
 
 class Bomberos
 {
@@ -35,6 +37,7 @@ class Bomberos
 
         sf::Vector2f        m_posicionBomberos;
         sf::Vector2f        m_posicionTelefono;
+        sf::Vector2f        m_posicionBaseParamedicos;
 
         sf::SoundBuffer     m_bufferTelefono;
         sf::Sound           m_soundTelefono;

@@ -1,12 +1,13 @@
 #ifndef PACIENTE_H
 #define PACIENTE_H
 
-#include <iostream>
-#include <sstream>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+
+#include <iostream>
+#include <sstream>
 
 #define FRECC_MAX 90    // Frecuencia cardiaca maxima  - Latidos  x minuto
 #define FRECC_MIN 60    // Frecuencia cardiaca minima  - Latidos  x minuto
@@ -42,10 +43,11 @@ class Paciente
         float       GetPresionArterial();
         float       GetTemperatura();
         float       GetTiempoInfarto();
-        float       GetLatitud();
-        float       GetLongitud();
+        std::string GetLatitud();
+        std::string GetLongitud();
         std::string GetCodigoPulsera();
         std::string GetUbicacion();
+        std::string GetNombre();
         bool        IsEnPeligro();
         bool        IsEstaVivo();
 
@@ -60,6 +62,8 @@ class Paciente
 
         /// Manipulacion de ritmo cardiaco
         void SetRitmoCardiaco(float delta);
+        void SetPresionArterial(float delta);
+        void SetTemperatura(float delta);
 
     private:
 
@@ -99,8 +103,8 @@ class Paciente
         bool        m_enPeligro;
         std::string m_codigoPulsera;
         std::string m_ubicacionActual;
-        double      m_latitud;
-        double      m_longitud;
+        std::string m_latitud;
+        std::string m_longitud;
 
         void  LoadResources();
 

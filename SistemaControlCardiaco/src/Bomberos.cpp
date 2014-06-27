@@ -8,6 +8,7 @@ Bomberos::Bomberos()
     //Coordenadas de objetos en la ventana
     m_posicionBomberos = sf::Vector2f(830.0f, 400.0f);
     m_posicionTelefono = sf::Vector2f(1000.0f, 500.0f);
+    m_posicionBaseParamedicos = sf::Vector2f(700.0f, 510.0f);
 
     m_existeEmergencia = false;
 
@@ -24,20 +25,33 @@ void Bomberos::Update()
 {
     m_paramedicos->Update();
 
+    if (!m_pacienteEnEmergencia->IsEnPeligro())
+    {
+        m_existeEmergencia = false;
+    }
+
     if (this->m_existeEmergencia)
     {
         /// Enviar paramedicos: Controlar la velocidad y distancia
 
         sf::Vector2f posicion = m_paramedicos->GetPosicion();
-        posicion.x -= 0.1f;
-
-        std::cout << "Pos paramedicos: " << posicion.x << std::endl;
+        posicion.x -= 0.5f;;
 
         if (posicion.x > 80.0f)
+        {
             m_paramedicos->SetPosicion(posicion);
+            m_paramedicos->SetEnCamino(false);
 
+        }
+        else {
+            m_paramedicos->SetSound(false);
+        }
     }
+    else {
+        m_paramedicos->SetPosicion(m_posicionBaseParamedicos);
 
+        m_paramedicos->SetEnCamino(false);
+    }
 
 }
 
@@ -65,7 +79,7 @@ void Bomberos::RecibeLlamadaEmergencia(Paciente* paciente)
 {
     // Se recibe datos del paciente para su ubicacion
     this->m_pacienteEnEmergencia = paciente;
-
+    m_paramedicos->SetEnCamino(true);
     m_existeEmergencia = true;
 
     // Enviamos paramedicos

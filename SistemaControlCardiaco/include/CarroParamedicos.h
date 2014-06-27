@@ -1,13 +1,13 @@
 #ifndef CARROPARAMEDICOS_H
 #define CARROPARAMEDICOS_H
 
-#include <iostream>
-#include <sstream>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
+#include <iostream>
+#include <sstream>
 
 class CarroParamedicos
 {
@@ -25,6 +25,7 @@ class CarroParamedicos
         float           GetDistanciaDestino();
         bool            IsEnCamino();
         void            SetEnCamino(bool estado);
+        void            SetSound(bool estado);
 
     private:
 

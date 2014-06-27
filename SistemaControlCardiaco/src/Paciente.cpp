@@ -8,9 +8,13 @@ Paciente::Paciente(std::string nombre, std::string codigoPulsera)
     m_estaVivo          = true;
     m_enPeligro         = false;
     m_tiempoInfarto     = 0.0f;
-    m_ritmoCardiaco     = 66.3f;
-    m_presionArterial   = 95.0f;
-    m_temperatura       = 35.0f;
+    m_ritmoCardiaco     = 66.0f;
+    m_presionArterial   = 95.2f;
+    m_temperatura       = 35.6f;
+    m_longitud          = "2° 10' 26.508";
+    m_latitud           = "41° 24' 12.1674'";
+    m_ubicacionActual   = m_latitud + ", " + m_longitud;
+
     m_cuentaRegresiva   = sf::Time::Zero;
 
     m_frecuencia = m_clock.getElapsedTime();
@@ -22,6 +26,7 @@ Paciente::~Paciente()
 {
     //dtor
 }
+
 
 void Paciente::Update()
 {
@@ -118,34 +123,34 @@ void Paciente::LoadResources()
     m_textNombre.setColor(sf::Color::Black);
     m_textNombre.setFont(m_font);
     m_textNombre.setCharacterSize(15);
-    m_textNombre.setPosition(0.0f, 0.0f);
+    m_textNombre.setPosition(20.0f, 100.0f);
 
     m_textRitmoCardiaco.setColor(sf::Color::Black);
     m_textRitmoCardiaco.setFont(m_font);
     m_textRitmoCardiaco.setCharacterSize(15);
-    m_textRitmoCardiaco.setPosition(0.0f, 20.0f);
+    m_textRitmoCardiaco.setPosition(20.0f, 120.0f);
 
     m_textPresionArterial.setColor(sf::Color::Black);
     m_textPresionArterial.setFont(m_font);
     m_textPresionArterial.setCharacterSize(15);
-    m_textPresionArterial.setPosition(0.0f, 40.0f);
+    m_textPresionArterial.setPosition(20.0f, 140.0f);
 
     m_textTemperatura.setColor(sf::Color::Black);
     m_textTemperatura.setFont(m_font);
     m_textTemperatura.setCharacterSize(15);
-    m_textTemperatura.setPosition(0.0f, 60.0f);
+    m_textTemperatura.setPosition(20.0f, 160.0f);
 
     m_textEstado.setString("Estado\t\t\t\t: Estable");
     m_textEstado.setColor(sf::Color::Black);
     m_textEstado.setFont(m_font);
     m_textEstado.setCharacterSize(15);
-    m_textEstado.setPosition(0.0f, 80.0f);
+    m_textEstado.setPosition(20.0f, 180.0f);
 
     m_textTiempoInfarto.setString("Tiempo Infarto  : 0 s");
     m_textTiempoInfarto.setColor(sf::Color::Black);
     m_textTiempoInfarto.setFont(m_font);
     m_textTiempoInfarto.setCharacterSize(15);
-    m_textTiempoInfarto.setPosition(0.0f, 100.0f);
+    m_textTiempoInfarto.setPosition(20.0f, 200.0f);
 
     /// Sounds
 
@@ -172,6 +177,15 @@ void Paciente::LoadResources()
 void Paciente::SetRitmoCardiaco(float delta)
 {
     this->m_ritmoCardiaco += delta;
+}
+void Paciente::SetPresionArterial(float delta)
+{
+    this->m_presionArterial +=delta;
+}
+
+void Paciente::SetTemperatura(float delta)
+{
+    this->m_temperatura += delta;
 }
 
 sf::Text Paciente::GetTextNombre()
@@ -245,12 +259,12 @@ std::string Paciente::GetUbicacion()
     return this->m_ubicacionActual;
 }
 
-float Paciente::GetLatitud()
+std::string  Paciente::GetLatitud()
 {
     return this->m_latitud;
 }
 
-float Paciente::GetLongitud()
+std::string  Paciente::GetLongitud()
 {
     return this->m_longitud;
 }
@@ -258,5 +272,9 @@ float Paciente::GetLongitud()
 bool Paciente::IsEnPeligro()
 {
     return this->m_enPeligro;
+}
+std::string Paciente::GetNombre()
+{
+    return this->m_nombre;
 }
 
